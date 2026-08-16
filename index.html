@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>بيت الشرق | Orient House Restaurant</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="header-content">
+
+        <div class="brand">
+            <div class="brand-icon">🍽️</div>
+            <div>
+                <h1>بيت الشرق</h1>
+                <span>ORIENT HOUSE RESTAURANT</span>
+            </div>
+        </div>
+
+        <div class="header-actions">
+            <button id="languageBtn">English</button>
+
+            <button class="cart-button" onclick="openCart()">
+                🛒
+                <span>السلة</span>
+                <b id="cartCount">0</b>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+
+<section class="hero">
+
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+
+        <span class="welcome">أهلاً وسهلاً 👋</span>
+
+        <h2>مطعم بيت الشرق</h2>
+
+        <p>
+            مذاق شرقي أصيل، أطباق شهية، وتجربة تستحق أن تعيشها.
+        </p>
+
+        <button class="hero-button" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">
+            استعرض المنيو
+        </button>
+
+    </div>
+
+</section>
+
+
+<main id="menu" class="menu">
+
+    <div class="section-title">
+        <span>OUR MENU</span>
+        <h2>قائمة الطعام</h2>
+        <p>اختر ما تشتهي وأضفه إلى سلتك</p>
+    </div>
+
+
+    <div class="menu-grid">
+
+        <!-- Beef Burger -->
+        <div class="item">
+
+            <div class="food-image">🍔</div>
+
+            <div class="item-content">
+
+                <div class="item-top">
+                    <h3>برجر لحم</h3>
+                    <span>Beef Burger</span>
+                </div>
+
+                <p>
+                    برجر لحم طازج مع الجبن والصوص الخاص.
+                </p>
+
+                <div class="item-bottom">
+
+                    <strong>RM 25</strong>
+
+                    <button onclick="addToCart('برجر لحم', 25)">
+                        + أضف للسلة
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Chicken Burger -->
+        <div class="item">
+
+            <div class="food-image">🍔</div>
+
+            <div class="item-content">
+
+                <div class="item-top">
+                    <h3>برجر دجاج</h3>
+                    <span>Chicken Burger</span>
+                </div>
+
+                <p>
+                    دجاج مقرمش مع الجبن والصوص الخاص.
+                </p>
+
+                <div class="item-bottom">
+
+                    <strong>RM 22</strong>
+
+                    <button onclick="addToCart('برجر دجاج', 22)">
+                        + أضف للسلة
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Potato -->
+        <div class="item">
+
+            <div class="food-image">🍟</div>
+
+            <div class="item-content">
+
+                <div class="item-top">
+                    <h3>بطاطس</h3>
+                    <span>French Fries</span>
+                </div>
+
+                <p>
+                    بطاطس مقرمشة ولذيذة تقدم ساخنة.
+                </p>
+
+                <div class="item-bottom">
+
+                    <strong>RM 10</strong>
+
+                    <button onclick="addToCart('بطاطس', 10)">
+                        + أضف للسلة
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<section class="contact">
+
+    <div>
+        <span>تواصل معنا</span>
+        <h2>جاهزين لخدمتك 🤍</h2>
+        <p>للطلب والاستفسارات تواصل معنا مباشرة.</p>
+    </div>
+
+    <a
+        href="https://wa.me/601111098433"
+        target="_blank"
+        class="whatsapp"
+    >
+        💬 واتساب المطعم
+    </a>
+
+</section>
+
+
+<!-- Cart -->
+<div id="cartOverlay" class="overlay">
+
+    <div class="cart-box">
+
+        <button class="close-button" onclick="closeCart()">×</button>
+
+        <div class="cart-title">
+            <span>YOUR ORDER</span>
+            <h2>سلة الطلب 🛒</h2>
+        </div>
+
+        <div id="cartItems"></div>
+
+        <div class="cart-empty" id="cartEmpty">
+            السلة فارغة حالياً
+            <small>أضف بعض الأطباق الشهية 😋</small>
+        </div>
+
+        <div class="cart-total">
+            <span>الإجمالي</span>
+            <strong>RM <span id="cartTotal">0</span></strong>
+        </div>
+
+        <button class="checkout-button" onclick="openCheckout()">
+            إتمام الطلب
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- Checkout -->
+<div id="checkoutOverlay" class="overlay">
+
+    <div class="checkout-box">
+
+        <button class="close-button" onclick="closeCheckout()">×</button>
+
+        <div class="cart-title">
+            <span>CHECKOUT</span>
+            <h2>بيانات الطلب</h2>
+        </div>
+
+        <label>الاسم</label>
+        <input id="customerName" type="text" placeholder="اكتب اسمك">
+
+        <label>رقم الجوال</label>
+        <input id="customerPhone" type="tel" placeholder="+60">
+
+        <label>نوع الطلب</label>
+
+        <select id="orderType">
+            <option value="استلام من المطعم">استلام من المطعم</option>
+            
+        </select>
+
+        <label>العنوان / الملاحظات</label>
+
+        <textarea
+            id="customerNote"
+            placeholder="اكتب العنوان أو أي ملاحظات على الطلب"
+        ></textarea>
+
+        <button class="send-order" onclick="sendOrder()">
+            إرسال الطلب عبر واتساب 📲
+        </button>
+
+    </div>
+
+</div>
+
+
+<footer>
+    <p>© 2026 بيت الشرق | Orient House Restaurant</p>
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
